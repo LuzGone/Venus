@@ -25,6 +25,11 @@ public class DeckOfCards
       }
    } // fim do construtor DeckOfCards
 
+   public DeckOfCards(List<Card> deck, Random randomNumbers){
+      this.deck = deck;
+      this.randomNumbers = randomNumbers;
+   }
+
    public boolean hasCard() {
 	   return deck.size() > 0;
    }
@@ -65,7 +70,16 @@ public class DeckOfCards
       return s;
    }
    
-   
+   public DeckOfCards copy(){
+      List<Card> deckCopy = new ArrayList<Card>();
+      for (Card card:deck){
+         Card cardCopy = new Card(card.getFace(),card.getSuit(),card.getValue());
+         deckCopy.add(cardCopy);
+      }
+      DeckOfCards deckOfCardsCopy = new DeckOfCards(deckCopy,this.randomNumbers);
+      return deckOfCardsCopy;
+      
+   }
 } // fim da classe DeckOfCards
 
 
