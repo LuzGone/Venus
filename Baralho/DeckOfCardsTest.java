@@ -7,7 +7,7 @@ public class DeckOfCardsTest
    public static void main( String args[] )
    {
       DeckOfCards myDeckOfCards = new DeckOfCards();
-      //myDeckOfCards.shuffle(); // coloca Cards em ordem aleat�ria
+      myDeckOfCards.shuffle(); // coloca Cards em ordem aleat�ria
  
       
       // imprime todas as 52 cartas na ordem em que elas s�o distribu�das
@@ -20,7 +20,7 @@ public class DeckOfCardsTest
       {
     	  System.out.printf( "%-20s\n",myDeckOfCards.dealCard());
          // distribui e imprime 4 Cards
-        // System.out.printf( "%-20s%-20s%-20s%-20s\n",
+         //System.out.printf( "%-20s%-20s%-20s%-20s\n",
          //   myDeckOfCards.dealCard(), myDeckOfCards.dealCard(), 
          //   myDeckOfCards.dealCard(), myDeckOfCards.dealCard() );
       } // for final
