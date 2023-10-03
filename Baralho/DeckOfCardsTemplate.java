@@ -48,4 +48,17 @@ public abstract class DeckOfCardsTemplate {
     public int size() {
         return deck.size();
     }
+
+    public DeckOfCardsTemplate copy() {
+        List<Card> deckCopy = new ArrayList<Card>();
+        for (Card card : deck) {
+            Card cardCopy = new Card(card.getFace(), card.getSuit(), card.getValue());
+            deckCopy.add(cardCopy);
+        }
+        DeckOfCardsTemplate deckOfCardsCopy = createDeckWithCopy(deckCopy, this.randomNumbers);
+        return deckOfCardsCopy;
+    }
+
+    // Método abstrato para criar uma instância da classe atual com o baralho copiado
+    protected abstract DeckOfCardsTemplate createDeckWithCopy(List<Card> deckCopy, Random randomNumbers);
 }

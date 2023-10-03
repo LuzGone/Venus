@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Random;
 
 public class Sueca extends DeckOfCardsTemplate {
@@ -26,14 +27,38 @@ public class Sueca extends DeckOfCardsTemplate {
         trunfo = getSuit(randomIndex);
     }
 
-    //falta
+    //Naipes 
     private String getSuit(int i) {
-        return null;
+        switch (i) {
+            case 0:
+                return "Hearts";
+            case 1:
+                return "Diamonds";
+            case 2:
+                return "Clubs";
+            case 3:
+                return "Spades";
+            default:
+                return "";
+        }
     }
     
-    //falta
+    //Face da carta baseado no valor dela
     private String getFace(int value) {
-        return null;
+        switch (value) {
+            case 1:
+                return "Ace";
+            case 7:
+                return "7";
+            case 11:
+                return "Jack";
+            case 12:
+                return "Queen";
+            case 13:
+                return "King";
+            default:
+                return String.valueOf(value);
+        }
     }
 
     @Override
@@ -54,5 +79,11 @@ public class Sueca extends DeckOfCardsTemplate {
 
     public String getTrunfo() {
         return trunfo;
+    }
+
+    //ver isso aqui
+    @Override
+    protected DeckOfCardsTemplate createDeckWithCopy(List<Card> deckCopy, Random randomNumbers) {
+        return null;
     }
 }
