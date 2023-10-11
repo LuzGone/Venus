@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Baralho implements Prototype{
-    private List<Card> baralho; // ArrayList usado como uma pilha de objetos
+    private List<Card> baralho = new ArrayList<Card>(); // ArrayList usado como uma pilha de objetos
     private final int NUMERO_DE_CARTAS = 52; // n�mero constante de Cards
     private Random numerosAleatorios; // gerador de n�mero aleat�rio
 
@@ -13,8 +13,7 @@ public class Baralho implements Prototype{
         String faces[] = { "Ace", "Deuce", "Three", "Four", "Five", "Six",
             "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };    
         String suits[] = { "Hearts", "Diamonds", "Clubs", "Spades" };     
-
-        this.baralho = new ArrayList<Card>(); // cria List de objetos Card
+        
         numerosAleatorios = new Random(); // cria gerador de n�mero aleat�rio
 
         // preenche baralho com objetos Card

@@ -2,27 +2,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class DeckOfCardsTemplate {
-    protected List<Card> deck;
-    protected final int NUMBER_OF_CARDS = 52;
+public abstract class DeckOfCardsTemplate implements Prototype {
+    
+    protected List<Card> deck = new ArrayList<Card>();
+    protected int NUMBER_OF_CARDS;
     protected Random randomNumbers;
 
     public DeckOfCardsTemplate() {
-        deck = new ArrayList<Card>();
-        randomNumbers = new Random();
-
+        this.randomNumbers = new Random();
         initializeDeck();
-        shuffle();
+    }
+
+    public DeckOfCardsTemplate(DeckOfCardsTemplate deck){
+        for (Card carta : deck.deck){
+            Card copiaCarta = new Card(carta.getFace(),carta.getSuit(),carta.getValue());
+            this.deck.add(copiaCarta);
+        }
+        this.randomNumbers = deck.randomNumbers;
     }
 
     // Método abstrato implementado na subclasse
-    protected abstract void initializeDeck();
+    public abstract void initializeDeck();
 
-    // Método abstrato implementado na subclasse
-    protected abstract void dealCards();
-
-    // Método abstrato implementado na subclasse
-    protected abstract void playSpecificGame();
 
     public boolean hasCard() {
         return !deck.isEmpty();
@@ -31,9 +32,8 @@ public abstract class DeckOfCardsTemplate {
     public void shuffle() {
         for (int first = 0; first < deck.size(); first++) {
             int second = randomNumbers.nextInt(NUMBER_OF_CARDS);
-            Card temp = deck.get(first);
-            deck.set(first, deck.get(second));
-            deck.set(second, temp);
+            Card temp = deck.remove(second);
+            deck.add(0, temp);
         }
     }
 
@@ -49,16 +49,5 @@ public abstract class DeckOfCardsTemplate {
         return deck.size();
     }
 
-    public DeckOfCardsTemplate copy() {
-        List<Card> deckCopy = new ArrayList<Card>();
-        for (Card card : deck) {
-            Card cardCopy = new Card(card.getFace(), card.getSuit(), card.getValue());
-            deckCopy.add(cardCopy);
-        }
-        DeckOfCardsTemplate deckOfCardsCopy = createDeckWithCopy(deckCopy, this.randomNumbers);
-        return deckOfCardsCopy;
-    }
-
-    // Método abstrato para criar uma instância da classe atual com o baralho copiado
-    protected abstract DeckOfCardsTemplate createDeckWithCopy(List<Card> deckCopy, Random randomNumbers);
+    public abstract Prototype clone();
 }
