@@ -14,7 +14,7 @@ public class Baralho implements Prototype{
             "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };    
         String suits[] = { "Hearts", "Diamonds", "Clubs", "Spades" };     
 
-        baralho = new ArrayList<Card>(); // cria List de objetos Card
+        this.baralho = new ArrayList<Card>(); // cria List de objetos Card
         numerosAleatorios = new Random(); // cria gerador de n�mero aleat�rio
 
         // preenche baralho com objetos Card
@@ -24,12 +24,10 @@ public class Baralho implements Prototype{
     } // fim do construtor DeckOfCards
 
     public Baralho(Baralho baralho){
-        List<Card> copiaBaralho = new ArrayList<Card>();
         for (Card carta : baralho.baralho){
             Card copiaCarta = new Card(carta.getFace(),carta.getSuit(),carta.getValue());
-            copiaBaralho.add(copiaCarta);
+            this.baralho.add(copiaCarta);
         }
-        this.baralho = copiaBaralho;
         this.numerosAleatorios = baralho.numerosAleatorios;
     }
 
